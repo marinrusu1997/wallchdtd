@@ -1,0 +1,10 @@
+.nyc_output/*
+build/*
+coverage/*
+dist/*
+doc/*
+node_modules/*
+report/*
+public/*
+config/*
+lib/**/*.d.ts

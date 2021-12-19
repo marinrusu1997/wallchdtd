@@ -1,0 +1,72 @@
+{
+  "name": "wallchdtd",
+  "description": "Wallpaper changer based on day time for Linux",
+  "keywords": [
+    "wallpaper",
+    "time",
+    "linux",
+    "daemon"
+  ],
+  "version": "1.0.0",
+  "author": "Rusu Marin <dimarusu2000@gmail.com>",
+  "repository": "https://github.com/marinrusu1997/wallchdtd",
+  "main": "lib/index.js",
+  "exports": null,
+  "types": "lib/typings.d.ts",
+  "files": [
+    "lib/**/*.js"
+  ],
+  "scripts": {
+    "lint": "eslint \"lib/**/*.js\" \"test/**/*.js\" --fix",
+    "test": "mocha",
+    "report": "mocha --reporter mochawesome --reporter-options reportDir=report,reportFilename=index,charts=true,code=false,autoOpen=true,showSkipped=true,saveJson=true,saveHtml=true",
+    "coverage": "nyc mocha",
+    "coverage:show": "http-server coverage/"
+  },
+  "dependencies": {
+    "ajv": "8",
+    "ajv-formats": "2",
+    "ajv-i18n": "4",
+    "chokidar": "3",
+    "daemonize-process": "3",
+    "dialog": "0",
+    "env-paths": "3",
+    "is-object": "1",
+    "load-json-file": "7",
+    "node-fetch": "3",
+    "public-ip": "4",
+    "suncalc": "1",
+    "wallpaper": "6",
+    "winston": "3",
+    "winston-daily-rotate-file": "4",
+    "write-json-file": "5"
+  },
+  "devDependencies": {
+    "@types/chai": "4",
+    "@types/mocha": "9",
+    "@types/suncalc": "1",
+    "chai": "4",
+    "eslint": "8",
+    "eslint-config-airbnb-base": "15",
+    "eslint-config-prettier": "8",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-mocha": "10",
+    "eslint-plugin-node": "11",
+    "eslint-plugin-prettier": "4",
+    "eslint-plugin-security": "1",
+    "http-server": "14",
+    "mocha": "9",
+    "mochawesome": "7",
+    "nyc": "15",
+    "prettier": "2"
+  },
+  "bin": "./lib/index.js",
+  "engines": {
+    "node": ">= 16"
+  },
+  "os": [
+    "linux"
+  ],
+  "license": "ISC",
+  "type": "module"
+}

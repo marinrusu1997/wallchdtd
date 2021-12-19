@@ -1,0 +1,12 @@
+{
+    "exit": true,
+    "color": true,
+    "recursive": true,
+    "watch": false,
+    "watch-extensions": [
+        "js"
+    ],
+    "spec": [
+        "test/**/*.spec.js"
+    ]
+}
