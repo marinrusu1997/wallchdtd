@@ -19,7 +19,7 @@ interface Config {
 }
 
 interface State {
-    location: GeoCoordinates;
+    location?: GeoCoordinates;
 }
 
 interface GeoIpLocation {
@@ -34,4 +34,16 @@ interface GeoIpLocation {
     timezone: string;
 }
 
+interface ConfigManager {
+    read(): Promise<Config | null>;
+    write(config: Config): Promise<void>;
+}
+
+interface StateManager {
+    read(): Promise<State | null>;
+    write(state: State): Promise<void>;
+}
+
+type WallpaperChanger = (string) => Promise<void>;
 type PartsOfDay = 'sunrise' | 'noon' | 'sunset' | 'dusk' | 'night' | 'dawn';
+type IntervalType = '()' | '[)' | '(]' | '[]';

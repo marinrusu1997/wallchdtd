@@ -19,6 +19,7 @@
   "scripts": {
     "lint": "eslint \"lib/**/*.js\" \"test/**/*.js\" --fix",
     "test": "mocha --require test/hooks.js",
+    "debug": "mocha --require test/hooks.js --inspect-brk",
     "report": "mocha --require test/hooks.js --reporter mochawesome --reporter-options reportDir=report,reportFilename=index,charts=true,code=false,autoOpen=true,showSkipped=true,saveJson=true,saveHtml=true",
     "coverage": "c8 mocha --require test/hooks.js",
     "coverage:show": "http-server coverage/"
@@ -33,6 +34,7 @@
     "env-paths": "3",
     "is-object": "1",
     "load-json-file": "7",
+    "moment": "2",
     "node-fetch": "3",
     "public-ip": "4",
     "suncalc": "1",
@@ -43,11 +45,14 @@
   },
   "devDependencies": {
     "@types/chai": "4",
+    "@types/chai-arrays": "2",
     "@types/mocha": "9",
     "@types/sinon": "10",
     "@types/suncalc": "1",
     "c8": "7",
     "chai": "4",
+    "chai-arrays": "2",
+    "dotenv": "10",
     "eslint": "8",
     "eslint-config-airbnb-base": "15",
     "eslint-config-prettier": "8",
@@ -59,7 +64,6 @@
     "http-server": "14",
     "mocha": "9",
     "mochawesome": "7",
-    "moment": "2",
     "prettier": "2",
     "sinon": "12"
   },
