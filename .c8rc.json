@@ -3,6 +3,5 @@
   "include": [
     "lib/**/*.js"
   ],
-  "check-coverage": true,
   "reporter": ["html", "text", "text-summary"]
 }
