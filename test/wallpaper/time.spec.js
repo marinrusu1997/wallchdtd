@@ -88,7 +88,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 				'05:00': 'a.txt',
 				'08:00': 'b.txt',
 				'19:00': 'c.txt',
-				'23:59': 'd.txt'
+				'21:00': 'd.txt'
 			}
 		};
 		const daemonStartingTime = new Date('2021-06-01T20:59:45Z');
@@ -139,7 +139,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
 		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
-			moment(new Date('2021-06-02T23:59:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+			moment(new Date('2021-06-02T21:00:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
 		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/c.txt']);
