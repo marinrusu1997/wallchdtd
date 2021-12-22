@@ -43,7 +43,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 	});
 
-	it('should change wallpaper when there are 2 entries', async () => {
+	it.only('should change wallpaper when there are 2 entries', async () => {
 		const wallpaperChanger = spy();
 		const morning = new Date('2021-06-01T07:58:03Z');
 		const evening = new Date('2021-06-01T19:02:15Z');
@@ -61,7 +61,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-01 16:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-01T19:00:00Z')).add(evening.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 		wallpaperChanger.resetHistory();
@@ -72,7 +74,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-02 05:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-02T08:00:00Z')).add(morning.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/b.txt']);
 	});
