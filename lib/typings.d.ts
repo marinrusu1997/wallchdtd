@@ -4,7 +4,7 @@ interface GeoCoordinates {
 }
 
 interface Config {
-    changeBy: 'sunlight' | 'time';
+    changeBy: 'sunlight' | 'daytime';
     wallpapers: {
         "dawn": string;
         "sunrise": string;
