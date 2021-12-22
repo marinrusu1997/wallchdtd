@@ -61,7 +61,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-01 16:00:00');
+		expect(nextWallpaperChange.getTime()).to.be.eq(1622563200000); // '2021-06-01 16:00:00'
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 		wallpaperChanger.resetHistory();
@@ -72,7 +72,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-02 05:00:00');
+		expect(nextWallpaperChange.getTime()).to.be.eq(1622610000000); // '2021-06-02 05:00:00'
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/b.txt']);
 	});
