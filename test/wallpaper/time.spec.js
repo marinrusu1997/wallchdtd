@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import moment from 'moment';
 import { changeWallpaperByTime } from '../../lib/wallpaper/time/index.js';
-import { format } from '../utils.js';
 
 const time = (date) => moment(date).format('H:m');
 
@@ -43,7 +42,7 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 	});
 
-	it.only('should change wallpaper when there are 2 entries', async () => {
+	it('should change wallpaper when there are 2 entries', async () => {
 		const wallpaperChanger = spy();
 		const morning = new Date('2021-06-01T07:58:03Z');
 		const evening = new Date('2021-06-01T19:02:15Z');
@@ -92,14 +91,17 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 				'24:00': 'd.txt'
 			}
 		};
+		const daemonStartingTime = new Date('2021-06-01T20:59:45Z');
 
 		let nextWallpaperChange = await changeWallpaperByTime({
 			config,
-			currentTime: new Date('2021-06-01T20:59:45Z'),
+			currentTime: daemonStartingTime,
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-01 21:01:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-02T00:01:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/d.txt']);
 		wallpaperChanger.resetHistory();
@@ -110,7 +112,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-02 05:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-02T08:00:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 		wallpaperChanger.resetHistory();
@@ -121,7 +125,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-02 16:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-02T19:00:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/b.txt']);
 		wallpaperChanger.resetHistory();
@@ -132,7 +138,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-02 21:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-03T00:00:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/c.txt']);
 		wallpaperChanger.resetHistory();
@@ -143,7 +151,9 @@ describe(`${changeWallpaperByTime.name} spec`, () => {
 			wallpaperChanger
 		});
 		expect(nextWallpaperChange).to.not.be.oneOf([null, undefined]);
-		expect(format(nextWallpaperChange)).to.be.eq('2021-06-03 05:00:00');
+		expect(moment(nextWallpaperChange).format('YYYY-MM-DD HH:mm:ss')).to.be.eq(
+			moment(new Date('2021-06-03T08:00:00Z')).add(daemonStartingTime.getTimezoneOffset(), 'minutes').format('YYYY-MM-DD HH:mm:ss')
+		);
 		expect(wallpaperChanger.callCount).to.be.eq(1);
 		expect(wallpaperChanger.args[0]).to.be.equalTo(['test/fixtures/wallpapers/a.txt']);
 		wallpaperChanger.resetHistory();
