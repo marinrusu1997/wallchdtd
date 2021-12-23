@@ -6,6 +6,7 @@
 Wallpaper changer basing on times of the day for Ubuntu.
 
 ![Screenshot](img/night.png)
+![Screenshot](img/noon.png)
 
 ## Features
 
